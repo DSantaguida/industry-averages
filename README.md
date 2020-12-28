@@ -10,3 +10,6 @@ View a tickers information. Information such as current price, shares outstandin
 
 3. Compare Industries:
 Compare all companies in the system with other companies within the same industry. Select which piece of data to compare it on and the system will display an average of all companies in the industry and list that data for each company within that sector.
+
+
+To run this app you must run app.py as well as running npm start in the frontend directory.
