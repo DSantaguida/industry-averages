@@ -13,3 +13,5 @@ Compare all companies in the system with other companies within the same industr
 
 
 To run this app you must run app.py as well as running npm start in the frontend directory.
+
+Note: The financial data from this app comes from the python yfinance library, which takes data from Yahoo! Finance
