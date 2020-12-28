@@ -24,6 +24,6 @@ frontend/yarn-debug.log*
 frontend/yarn-error.log*
 
 #python
-backend/*.pyc
-backend/__pycache__
-backend/temp.json
+*.pyc
+__pycache__
+temp.json
