@@ -13,6 +13,7 @@ class Compare extends React.Component{
     this.state = { 
       sector: 'Technology',
       key: 'trailingAnnualDividendRate',
+      loading: false,
       sectors: [],
       datapoints: [],
       entries: []
@@ -47,8 +48,10 @@ class Compare extends React.Component{
   } 
 
   async createEntries() {
+    this.setState({loading: true});
     const response = await fetch(`http://localhost:5000/compare/${this.state.sector}/${this.state.key}`);
     const data = await response.json();
+    this.setState({loading: false});
     this.setState({entries: []});
     data.forEach(obj => {
       this.setState({entries: this.state.entries.concat(
@@ -87,6 +90,7 @@ class Compare extends React.Component{
           </Col>
           <Col>
             <Button variant="primary" onClick={this.createEntries}>Compare</Button>
+            {this.state.loading ? <p>Retrieving Data...</p> : null}
           </Col>
         </Row>
         <Row className="pl-3">
