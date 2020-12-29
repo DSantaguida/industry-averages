@@ -40,4 +40,9 @@ def get_tickers():
     return json.dumps(config.getTickers())
 
 
+@app.route('/remove-ticker/<sector>/<ticker>', methods=['GET'])
+def remove_ticker(sector, ticker):
+    return json.dumps(config.removeTicker(sector, ticker))
+
+
 app.run()

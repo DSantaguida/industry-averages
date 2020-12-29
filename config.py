@@ -76,3 +76,14 @@ def getTickers():
     for sector in sections:
         tickers += config[sector]["tickers"] + ','
     return tickers
+
+
+def removeTicker(sector, ticker):
+    config = configparser.ConfigParser()
+    config.read("ticker.config")
+    replace = config[sector]["tickers"].replace(
+        ticker + ',', '').replace(',' + ticker, '').replace(ticker, '')
+    config.set(sector, 'tickers', str(replace))
+    print(replace)
+    with open("ticker.config", "w+") as file:
+        config.write(file)

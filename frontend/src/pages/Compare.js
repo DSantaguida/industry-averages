@@ -62,8 +62,8 @@ class Compare extends React.Component{
     data.forEach(obj => {
       this.setState({entries: this.state.entries.concat(
         <tr>
-          <th>{obj.name}</th>
-          <th>{obj.data}</th>
+          <td>{obj.name}</td>
+          <td>{obj.data}</td>
         </tr>
       )})
     })
@@ -96,7 +96,7 @@ class Compare extends React.Component{
           </Col>
         </Row>
         <Row className="pl-3">
-          <table>
+          {this.state.entries.length !== 0 ? <table>
           <tbody>
             <tr>
               <th>Ticker</th>
@@ -104,7 +104,7 @@ class Compare extends React.Component{
             </tr>
             {this.state.entries}
             </tbody>
-          </table>
+          </table> : null}
         </Row>
     </Container>
     );

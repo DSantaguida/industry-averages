@@ -8,3 +8,5 @@ import tickerInfo
 
 # print(config.getTickers())
 # print(tickerInfo.getSectorData('Technology', 'trailingPE'))
+
+print(config.removeTicker('temp', 'test'))
