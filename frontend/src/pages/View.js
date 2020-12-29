@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Container,
   Row,
-  Col
+  Col,
+  Button
 } from 'react-bootstrap';
 import { Dropdown } from 'semantic-ui-react'
 
@@ -22,6 +23,7 @@ class View extends React.Component{
 
     this.handleTickerChange = this.handleTickerChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteTicker = this.deleteTicker.bind(this);
     this.createTickers();
   }
 
@@ -44,7 +46,12 @@ class View extends React.Component{
     const response = await fetch(`http://localhost:5000/ticker/${this.state.ticker}`);
     await response.json().then(data => this.setState({tickerData: data}));
     this.setState({loading: false});
-    console.log(this.state.tickerData);
+  }
+
+  async deleteTicker() {
+    console.log('test');
+    const response = await fetch(`http://localhost:5000/remove-ticker/${this.state.tickerData.sector}/${this.state.ticker}`);
+    await response.json().then(data => this.setState({ticker: '', tickerData: []}, () => this.createTickers()));
   }
 
   render(){
@@ -55,6 +62,9 @@ class View extends React.Component{
             <p>Select Ticker: </p>
             <Dropdown placeholder='Tickers' search selection options={this.state.tickers} onChange={this.handleTickerChange}/>
             {this.state.loading ? <p className="pl-2 pb-2 pt-4" style={{ fontSize: '15px' }}>Retrieving Data...</p> : null}
+          </Col>
+          <Col style={{ display: "flex" }}>
+           <Button style={{ marginLeft: "auto", height: '40px', width: '64px' }} variant="danger" onClick={this.deleteTicker}>Delete</Button>
           </Col>
         </Row>
         <Col>
