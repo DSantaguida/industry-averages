@@ -10,6 +10,8 @@ import { Dropdown } from 'semantic-ui-react'
 
 class Compare extends React.Component{
 
+//TODO: Add compare with all tickers
+
   constructor(props) {
     super(props);
     this.state = { 
