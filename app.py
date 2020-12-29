@@ -35,4 +35,9 @@ def get_datapoints():
     return json.dumps(config.getDatapoints())
 
 
+@app.route('/tickers', methods=['GET'])
+def get_tickers():
+    return json.dumps(config.getTickers())
+
+
 app.run()

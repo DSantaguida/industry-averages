@@ -6,5 +6,5 @@ import tickerInfo
 # print(yf.Ticker("AAPL").info)
 
 
-# print(config.getDatapoints())
-print(tickerInfo.getSectorData('Technology', 'trailingPE'))
+# print(config.getTickers())
+# print(tickerInfo.getSectorData('Technology', 'trailingPE'))

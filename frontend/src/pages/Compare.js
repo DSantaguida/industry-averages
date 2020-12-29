@@ -5,6 +5,8 @@ import {
   Col,
   Button
 } from 'react-bootstrap';
+import { Dropdown } from 'semantic-ui-react'
+
 
 class Compare extends React.Component{
 
@@ -31,9 +33,10 @@ class Compare extends React.Component{
     const response = await fetch(`http://localhost:5000/sectors`);
     await response.json().then(data => this.setState({sectors: data}));
     this.setState({
-      sectors: this.state.sectors.map((item) => (
-        <option key={item} value={item}>{item}</option>
-      ))
+      sectors: this.state.sectors.map((item) => ({
+        text: item,
+        value: item
+      }))
     });
   } 
 
@@ -41,9 +44,10 @@ class Compare extends React.Component{
     const response = await fetch(`http://localhost:5000/datapoints`);
     await response.json().then(data => this.setState({datapoints: data.split(",")}));
     this.setState({
-      datapoints: this.state.datapoints.map((item) => (
-        <option key={item} value={item}>{item}</option>
-      ))
+      datapoints: this.state.datapoints.map((item) => ({
+        text: item,
+        value: item
+      }))
     });
   } 
 
@@ -64,12 +68,12 @@ class Compare extends React.Component{
     console.log(this.state.entries);
   }
 
-  handleSectorUpdate (event) {
-    this.setState({sector: event.target.value});
+  handleSectorUpdate (event, data) {
+    this.setState({sector: data.value});
   }
 
-  handleDatapointUpdate(event) {
-    this.setState({key: event.target.value});
+  handleDatapointUpdate(event, data) {
+    this.setState({key: data.value});
   }
  
   render(){
@@ -78,15 +82,11 @@ class Compare extends React.Component{
         <Row className="pt-3 pb-5">
           <Col className="column">
             <p>Select Industry: </p>
-            <select value={this.state.sector} onChange={this.handleSectorUpdate}>
-              {this.state.sectors}
-            </select>
+            <Dropdown placeholder='Ticker' search selection options={this.state.sectors} onChange={this.handleSectorUpdate}/>
           </Col>
           <Col className="column">
             <p>Select Data: </p>
-            <select value={this.state.key} onChange={this.handleDatapointUpdate}>
-              {this.state.datapoints}
-            </select>
+            <Dropdown placeholder='Data' search selection options={this.state.datapoints} onChange={this.handleDatapointUpdate}/>
           </Col>
           <Col>
             <Button variant="primary" onClick={this.createEntries}>Compare</Button>

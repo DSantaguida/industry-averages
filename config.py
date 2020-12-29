@@ -65,3 +65,14 @@ def getDatapoints():
     config = configparser.ConfigParser()
     config.read("ticker.config")
     return config["General"]["datapoints"]
+
+
+def getTickers():
+    tickers = ''
+    config = configparser.ConfigParser()
+    config.read("ticker.config")
+    sections = config.sections()
+    sections.remove("General")
+    for sector in sections:
+        tickers += config[sector]["tickers"] + ','
+    return tickers
